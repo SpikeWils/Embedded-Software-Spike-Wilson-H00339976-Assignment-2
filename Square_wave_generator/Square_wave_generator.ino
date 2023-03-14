@@ -34,7 +34,7 @@
    DECLARE GLOBAL VARIABLES
 *****************************************************/
 
-int signalAFrequency = 0;                                       //Declare variable for signal A frequency with initial value of 0 (Hz)
+int signalAFrequency =0;                                       //Declare variable for signal A frequency with initial value of 0 (Hz)
 int signalBFrequency = 0;                                       //Declare variable for signal B frequency with initial value of 0 (Hz)
 
 /*****************************************************
