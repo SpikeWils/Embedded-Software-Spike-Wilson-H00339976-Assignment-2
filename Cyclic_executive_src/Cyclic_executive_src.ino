@@ -33,6 +33,10 @@ const int SquareWave1Pin = SQUARE_WAVE_1_PIN;         //Declare task2 signal pin
 const int SquareWave2Pin = SQUARE_WAVE_2_PIN;         //Declare task3 signal pin
 const int LEDpin = LED_PIN;                           //Declare task4 LED pin
 const int PotPin = POT_PIN;                           //Declare task4 pot pin
+
+unsigned int period_high1 = 0;                        //Declare variable for high period of measured square wave for task2
+unsigned int period_high2 = 0;                        //Declare variable for high period of measured square wave for task3
+
 int frequency1mapped = 0;                             //Declare variable for task5 to map frequency of task2 from 0>99
 int frequency2mapped = 0;                             //Declare variable for task5 to map frequency of task3 from 0>99
 
@@ -95,7 +99,7 @@ void frame()                                          //Declare frame function
 
     case 1:
 
-      JobTask2(SquareWave1Pin);
+      //JobTask2(SquareWave1Pin);
 
       break;
 
@@ -113,7 +117,7 @@ void frame()                                          //Declare frame function
 
     case 4:
 
-      JobTask2(SquareWave1Pin);
+      //JobTask2(SquareWave1Pin);
 
       break;
 
@@ -125,7 +129,7 @@ void frame()                                          //Declare frame function
 
     case 6:
 
-      JobTask2(SquareWave1Pin);
+      //JobTask2(SquareWave1Pin);
 
       break;
 
@@ -143,7 +147,7 @@ void frame()                                          //Declare frame function
 
     case 9:
 
-      JobTask2(SquareWave1Pin);
+      //JobTask2(SquareWave1Pin);
 
       break;
   }
@@ -162,6 +166,10 @@ void loop(void)
    TASK FUNCTIONS
 *****************************************************/
 
+/*-----------------
+   TASK 1 JOBS
+------------------*/
+
 void JobTask1(void)                                   //Declare function JobTask1 [Output signal]
 {
   monitor.jobStarted(1);                              //Call jobstarted function of monitor object
@@ -177,13 +185,24 @@ void JobTask1(void)                                   //Declare function JobTask
   monitor.jobEnded(1);                                //Call jobended function of monitor object
 }
 
+/*-----------------
+   TASK 2 JOBS
+------------------*/
 
-
-float JobTask2(int SquareWave1Pin)                    //Declare function JobTask2 [Measure square wave frequency]
+float JobTask2a(int SquareWave1Pin)                    //Declare function JobTask2 [Measure square wave frequency]
 {
   monitor.jobStarted(2);                              //Call jobstarted function of monitor object
   
-  unsigned int period_high1 = pulseIn(SquareWave1Pin, HIGH);    //Measure the period_high1 of the input signal using the pulseIn function
+  period_high1 = pulseIn(SquareWave1Pin, HIGH);    //Measure the period_high1 of the input signal using the pulseIn function
+
+  monitor.jobEnded(2);                                //Call jobended function of monitor object
+}
+
+//--------------------
+
+float JobTask2b(int SquareWave1Pin)                    //Declare function JobTask2 [Measure square wave frequency]
+{
+  monitor.jobStarted(2);                              //Call jobstarted function of monitor object
 
   frequency1 = 1.0 / ((period_high1 * 2) * 0.000001);           //Calculate the frequency from the period_high1 [high period multiplied by 2 as square wave is symmetrical]
 
@@ -192,12 +211,24 @@ float JobTask2(int SquareWave1Pin)                    //Declare function JobTask
   monitor.jobEnded(2);                                //Call jobended function of monitor object
 }
 
+/*-----------------
+   TASK 3 JOBS
+------------------*/
 
-float JobTask3(int SquareWave2Pin)                    //Declare function JobTask3 [Measure square wave frequency]
+float JobTask3a(int SquareWave2Pin)                    //Declare function JobTask3 [Measure square wave frequency]
 {
   monitor.jobStarted(3);                              //Call jobstarted function of monitor object
 
-  unsigned int period_high2 = pulseIn(SquareWave2Pin, HIGH);    //Measure the period_high2 of the input signal using the pulseIn function
+  period_high2 = pulseIn(SquareWave2Pin, HIGH);    //Measure the period_high2 of the input signal using the pulseIn function
+
+  monitor.jobEnded(3);                                //Call jobended function of monitor object
+}
+
+//--------------------
+
+float JobTask3b(int SquareWave2Pin)                    //Declare function JobTask3 [Measure square wave frequency]
+{
+  monitor.jobStarted(3);                              //Call jobstarted function of monitor object
 
   frequency2 = 1.0 / ((period_high2 * 2) * 0.000001);           //Calculate the frequency from the period_high2 [high period multiplied by 2 as square wave is symmetrical]
   
@@ -206,7 +237,9 @@ float JobTask3(int SquareWave2Pin)                    //Declare function JobTask
   monitor.jobEnded(3);                                //Call jobended function of monitor object
 }
 
-
+/*-----------------
+   TASK 4 JOBS
+------------------*/
 
 void JobTask4(void)                                   //Declare function JobTask4 [Read analog val]
 {
@@ -231,13 +264,25 @@ void JobTask4(void)                                   //Declare function JobTask
   monitor.jobEnded(4);                                //Call jobended function of monitor object
 }
 
+/*-----------------
+   TASK 5 JOBS
+------------------*/
 
-void JobTask5(void)                                   //Declare function JobTask5 [Map & print frequency vals]
+void JobTask5a(void)                                   //Declare function JobTask5 [Map & print frequency vals]
 {
   monitor.jobStarted(5);                              //Call jobstarted function of monitor object
 
   frequency1mapped = map(frequency1, 333, 1000, 0, 99);   //Map value of frequency1 (333>1000Hz) to (0>99) and store in variable frequency1mapped
   frequency2mapped = map(frequency2, 500, 1000, 0, 99);   //Map value of frequency2 (500>1000Hz) to (0>99) and store in variable frequency1mapped
+
+  monitor.jobEnded(5);                                //Call jobended function of monitor object
+}
+
+//--------------------
+
+void JobTask5b(void)                                   //Declare function JobTask5 [Map & print frequency vals]
+{
+  monitor.jobStarted(5);                              //Call jobstarted function of monitor object
 
   Serial.print(frequency1mapped);                     //Print value of frequency1mapped to serial monitor
   Serial.print(", ");                                 //Print to serial monitor
@@ -245,3 +290,6 @@ void JobTask5(void)                                   //Declare function JobTask
 
   monitor.jobEnded(5);                                //Call jobended function of monitor object
 }
+
+
+
