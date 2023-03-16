@@ -1,11 +1,25 @@
-/*
-NOTES
 
-Task 1 = Output signal
-Task 2 = Measure square wave frequency 333-1000Hz
-Task 3 = Measure square wave frequency 500-1000Hz
-Task 4 = Read average analogue value & set LED
-Task 5 = Map frequency of task 2 & 3 to 0-99 and print to serial monitor
+/*
+     ▄▄▄        ██████   ██████  ██▓  ▄████  ███▄    █  ███▄ ▄███▓▓█████  ███▄    █ ▄▄▄█████▓   ▄▄▄█████▓ █     █░ ▒█████  
+    ▒████▄    ▒██    ▒ ▒██    ▒ ▓██▒ ██▒ ▀█▒ ██ ▀█   █ ▓██▒▀█▀ ██▒▓█   ▀  ██ ▀█   █ ▓  ██▒ ▓▒   ▓  ██▒ ▓▒▓█░ █ ░█░▒██▒  ██▒
+    ▒██  ▀█▄  ░ ▓██▄   ░ ▓██▄   ▒██▒▒██░▄▄▄░▓██  ▀█ ██▒▓██    ▓██░▒███   ▓██  ▀█ ██▒▒ ▓██░ ▒░   ▒ ▓██░ ▒░▒█░ █ ░█ ▒██░  ██▒
+    ░██▄▄▄▄██   ▒   ██▒  ▒   ██▒░██░░▓█  ██▓▓██▒  ▐▌██▒▒██    ▒██ ▒▓█  ▄ ▓██▒  ▐▌██▒░ ▓██▓ ░    ░ ▓██▓ ░ ░█░ █ ░█ ▒██   ██░
+     ▓█   ▓██▒▒██████▒▒▒██████▒▒░██░░▒▓███▀▒▒██░   ▓██░▒██▒   ░██▒░▒████▒▒██░   ▓██░  ▒██▒ ░      ▒██▒ ░ ░░██▒██▓ ░ ████▓▒░
+     ▒▒   ▓▒█░▒ ▒▓▒ ▒ ░▒ ▒▓▒ ▒ ░░▓   ░▒   ▒ ░ ▒░   ▒ ▒ ░ ▒░   ░  ░░░ ▒░ ░░ ▒░   ▒ ▒   ▒ ░░        ▒ ░░   ░ ▓░▒ ▒  ░ ▒░▒░▒░ 
+      ▒   ▒▒ ░░ ░▒  ░ ░░ ░▒  ░ ░ ▒ ░  ░   ░ ░ ░░   ░ ▒░░  ░      ░ ░ ░  ░░ ░░   ░ ▒░    ░           ░      ▒ ░ ░    ░ ▒ ▒░ 
+      ░   ▒   ░  ░  ░  ░  ░  ░   ▒ ░░ ░   ░    ░   ░ ░ ░      ░      ░      ░   ░ ░   ░           ░        ░   ░  ░ ░ ░ ▒  
+         ░  ░      ░        ░   ░        ░          ░        ░      ░  ░         ░                          ░        ░ ░  
+                                                                                                                       
+
+      _     _    ___  _    _     _  _    ___ ___      _ 
+     / \_/ /  |   |  /    |_ \/ |_ /  | | |   | \  / |_ 
+     \_ |  \_ |_ _|_ \_   |_ /\ |_ \_ |_| |  _|_ \/  |_ 
+    ----------------------------------------------------                                                 
+      Task 1 = Output signal
+      Task 2 = Measure square wave frequency 333-1000Hz
+      Task 3 = Measure square wave frequency 500-1000Hz
+      Task 4 = Read average analogue value & set LED
+      Task 5 = Map frequency of task 2 & 3 to 0-99 and print to serial monitor
 
 */
 
@@ -66,6 +80,7 @@ void setup(void)
     //Do nothing
   }
   
+  delay(50);                                          //Wait 50ms
   Serial.println("Serial comm init");                 //Print to serial monitor
 
   monitor.startMonitoring();                          //Monitor object begin monitoring function
@@ -94,63 +109,120 @@ void frame()                                          //Declare frame function
     case 0:
 
       JobTask1();
+      float JobTask3a();
+      JobTask4();
 
-      break;
+    break;
 
     case 1:
 
-      //JobTask2(SquareWave1Pin);
+      JobTask1();
+      float JobTask2a();
 
-      break;
+    break;
 
     case 2:
 
       JobTask1();
+      float JobTask3b();
 
-      break;
+    break;
 
     case 3:
 
-      JobTask4();
+      JobTask1();
+      float JobTask2b();
 
-      break;
+    break;
 
     case 4:
 
-      //JobTask2(SquareWave1Pin);
+      JobTask1();
+      float JobTask3a();
 
-      break;
+    break;
 
     case 5:
 
       JobTask1();
+      JobTask5a();
 
-      break;
+    break;
 
     case 6:
 
-      //JobTask2(SquareWave1Pin);
+      JobTask1();
+      float JobTask3b();
 
-      break;
+    break;
 
     case 7:
 
       JobTask1();
+      float JobTask2a();
 
-      break;
+    break;
 
     case 8:
 
       JobTask1();
+      float JobTask3a();
 
-      break;
+    break;
 
     case 9:
 
-      //JobTask2(SquareWave1Pin);
+      JobTask1();
+      float JobTask2b();
 
-      break;
+    break;
+
+    case 10:
+
+      JobTask1();
+      float JobTask3b();
+
+    break;
+
+    case 11:
+
+      JobTask1();
+      float JobTask2a();
+
+    break;
+
+    case 12:
+
+      JobTask1();
+      float JobTask3a();
+
+    break;
+
+    case 13:
+
+      JobTask1();
+      float JobTask2b();
+
+    break;
+
+    case 14:
+
+      JobTask1();
+      float JobTask3b();
+
+    break;
+
+    case 15:
+
+      JobTask1();
+      JobTask5b();
+
+    break;
   }
+
+  frameCounter++;                                     //Increment frame counter
+  frameTime = frameCounter * FRAME_DURATION_MS;       //Update frame time (multiply counter by frame duration)
+  
 }
 
 /*****************************************************
@@ -189,7 +261,7 @@ void JobTask1(void)                                   //Declare function JobTask
    TASK 2 JOBS
 ------------------*/
 
-float JobTask2a(int SquareWave1Pin)                    //Declare function JobTask2 [Measure square wave frequency]
+float JobTask2a()                    //Declare function JobTask2 [Measure square wave frequency]
 {
   monitor.jobStarted(2);                              //Call jobstarted function of monitor object
   
@@ -200,7 +272,7 @@ float JobTask2a(int SquareWave1Pin)                    //Declare function JobTas
 
 //--------------------
 
-float JobTask2b(int SquareWave1Pin)                    //Declare function JobTask2 [Measure square wave frequency]
+float JobTask2b()                    //Declare function JobTask2 [Measure square wave frequency]
 {
   monitor.jobStarted(2);                              //Call jobstarted function of monitor object
 
@@ -215,7 +287,7 @@ float JobTask2b(int SquareWave1Pin)                    //Declare function JobTas
    TASK 3 JOBS
 ------------------*/
 
-float JobTask3a(int SquareWave2Pin)                    //Declare function JobTask3 [Measure square wave frequency]
+float JobTask3a()                    //Declare function JobTask3 [Measure square wave frequency]
 {
   monitor.jobStarted(3);                              //Call jobstarted function of monitor object
 
@@ -226,7 +298,7 @@ float JobTask3a(int SquareWave2Pin)                    //Declare function JobTas
 
 //--------------------
 
-float JobTask3b(int SquareWave2Pin)                    //Declare function JobTask3 [Measure square wave frequency]
+float JobTask3b()                    //Declare function JobTask3 [Measure square wave frequency]
 {
   monitor.jobStarted(3);                              //Call jobstarted function of monitor object
 
@@ -292,4 +364,17 @@ void JobTask5b(void)                                   //Declare function JobTas
 }
 
 
+
+/*
+     ██▓███   ██▀███   ▒█████    ▄████  ██▀███   ▄▄▄       ███▄ ▄███▓   ▓█████  ███▄    █ ▓█████▄ 
+    ▓██░  ██▒▓██ ▒ ██▒▒██▒  ██▒ ██▒ ▀█▒▓██ ▒ ██▒▒████▄    ▓██▒▀█▀ ██▒   ▓█   ▀  ██ ▀█   █ ▒██▀ ██▌
+    ▓██░ ██▓▒▓██ ░▄█ ▒▒██░  ██▒▒██░▄▄▄░▓██ ░▄█ ▒▒██  ▀█▄  ▓██    ▓██░   ▒███   ▓██  ▀█ ██▒░██   █▌
+    ▒██▄█▓▒ ▒▒██▀▀█▄  ▒██   ██░░▓█  ██▓▒██▀▀█▄  ░██▄▄▄▄██ ▒██    ▒██    ▒▓█  ▄ ▓██▒  ▐▌██▒░▓█▄   ▌
+    ▒██▒ ░  ░░██▓ ▒██▒░ ████▓▒░░▒▓███▀▒░██▓ ▒██▒ ▓█   ▓██▒▒██▒   ░██▒   ░▒████▒▒██░   ▓██░░▒████▓ 
+    ▒▓▒░ ░  ░░ ▒▓ ░▒▓░░ ▒░▒░▒░  ░▒   ▒ ░ ▒▓ ░▒▓░ ▒▒   ▓▒█░░ ▒░   ░  ░   ░░ ▒░ ░░ ▒░   ▒ ▒  ▒▒▓  ▒ 
+    ░▒ ░       ░▒ ░ ▒░  ░ ▒ ▒░   ░   ░   ░▒ ░ ▒░  ▒   ▒▒ ░░  ░      ░    ░ ░  ░░ ░░   ░ ▒░ ░ ▒  ▒ 
+    ░░         ░░   ░ ░ ░ ░ ▒  ░ ░   ░   ░░   ░   ░   ▒   ░      ░         ░      ░   ░ ░  ░ ░  ░ 
+                ░         ░ ░        ░    ░           ░  ░       ░         ░  ░         ░    ░    
+                                                                                       ░      
+*/
 
