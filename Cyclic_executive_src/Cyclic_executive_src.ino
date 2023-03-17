@@ -80,7 +80,7 @@ void setup(void)
     //Do nothing
   }
   
-  delay(50);                                          //Wait 50ms
+  delay(500);                                         //Wait 500ms
   Serial.println("Serial comm init");                 //Print to serial monitor
 
   monitor.startMonitoring();                          //Monitor object begin monitoring function
@@ -99,6 +99,21 @@ void setup(void)
    SCHEDULE
 *****************************************************/
 
+/*|=========================================================================================|
+  |  NOTE:                                                                                  |
+  |  --------------------------------------------------------------------------------       |
+  |  Each case in the frame function follows the same format as outlined below              |
+  |  Each frame will not be explicitly commented, refer to this note for information        |
+  |  --------------------------------------------------------------------------------       |
+  |                                                                                         |
+  |  case 0:                                           //Enter switch block at given case   |
+  |                                                                                         |
+  |    JobTask1();                                     //Call functions                     |
+  |                                                                                         |
+  |  break;                                            //Exit switch block                  |
+  |=========================================================================================|*/
+
+
 void frame()                                          //Declare frame function
 {
 
@@ -109,7 +124,7 @@ void frame()                                          //Declare frame function
     case 0:
 
       JobTask1();
-      float JobTask3a();
+      JobTask3a();
       JobTask4();
 
     break;
@@ -117,28 +132,28 @@ void frame()                                          //Declare frame function
     case 1:
 
       JobTask1();
-      float JobTask2a();
+      JobTask2a();
 
     break;
 
     case 2:
 
       JobTask1();
-      float JobTask3b();
+      JobTask3b();
 
     break;
 
     case 3:
 
       JobTask1();
-      float JobTask2b();
+      JobTask2b();
 
     break;
 
     case 4:
 
       JobTask1();
-      float JobTask3a();
+      JobTask3a();
 
     break;
 
@@ -152,63 +167,63 @@ void frame()                                          //Declare frame function
     case 6:
 
       JobTask1();
-      float JobTask3b();
+      JobTask3b();
 
     break;
 
     case 7:
 
       JobTask1();
-      float JobTask2a();
+      JobTask2a();
 
     break;
 
     case 8:
 
       JobTask1();
-      float JobTask3a();
+      JobTask3a();
 
     break;
 
     case 9:
 
       JobTask1();
-      float JobTask2b();
+      JobTask2b();
 
     break;
 
     case 10:
 
       JobTask1();
-      float JobTask3b();
+      JobTask3b();
 
     break;
 
     case 11:
 
       JobTask1();
-      float JobTask2a();
+      JobTask2a();
 
     break;
 
     case 12:
 
       JobTask1();
-      float JobTask3a();
+      JobTask3a();
 
     break;
 
     case 13:
 
       JobTask1();
-      float JobTask2b();
+      JobTask2b();
 
     break;
 
     case 14:
 
       JobTask1();
-      float JobTask3b();
+      JobTask3b();
 
     break;
 
@@ -216,6 +231,75 @@ void frame()                                          //Declare frame function
 
       JobTask1();
       JobTask5b();
+
+    break;
+
+    case 16:
+
+      JobTask1();
+      JobTask3a();
+
+    break;
+
+    case 17:
+
+      JobTask1();
+      JobTask2a();
+
+    break;
+
+    case 18:
+
+      JobTask1();
+      JobTask3b();
+
+    break;
+
+    case 19:
+
+      JobTask1();
+      JobTask2b();
+
+    break;
+
+    case 20:
+
+      JobTask1();
+      JobTask3a();
+
+    break;
+
+    case 21:
+
+      JobTask1();
+      JobTask2a();
+
+    break;
+
+    case 22:
+
+      JobTask1();
+      JobTask3b();
+
+    break;
+
+    case 23:
+
+      JobTask1();
+      JobTask2b();
+
+    break;
+
+    case 24:
+
+      JobTask1();
+      JobTask3a();
+
+    break;
+
+    case 25:
+
+      JobTask1();
 
     break;
   }
@@ -231,7 +315,7 @@ void frame()                                          //Declare frame function
 
 void loop(void)
 {
-
+  //Do nothing
 }
 
 /*****************************************************
@@ -261,18 +345,18 @@ void JobTask1(void)                                   //Declare function JobTask
    TASK 2 JOBS
 ------------------*/
 
-float JobTask2a()                    //Declare function JobTask2 [Measure square wave frequency]
+float JobTask2a()                                     //Declare function JobTask2 [Measure square wave frequency]
 {
   monitor.jobStarted(2);                              //Call jobstarted function of monitor object
   
-  period_high1 = pulseIn(SquareWave1Pin, HIGH);    //Measure the period_high1 of the input signal using the pulseIn function
+  period_high1 = pulseIn(SquareWave1Pin, HIGH);       //Measure the period_high1 of the input signal using the pulseIn function
 
   monitor.jobEnded(2);                                //Call jobended function of monitor object
 }
 
 //--------------------
 
-float JobTask2b()                    //Declare function JobTask2 [Measure square wave frequency]
+float JobTask2b()                                     //Declare function JobTask2 [Measure square wave frequency]
 {
   monitor.jobStarted(2);                              //Call jobstarted function of monitor object
 
@@ -287,18 +371,18 @@ float JobTask2b()                    //Declare function JobTask2 [Measure square
    TASK 3 JOBS
 ------------------*/
 
-float JobTask3a()                    //Declare function JobTask3 [Measure square wave frequency]
+float JobTask3a()                                     //Declare function JobTask3 [Measure square wave frequency]
 {
   monitor.jobStarted(3);                              //Call jobstarted function of monitor object
 
-  period_high2 = pulseIn(SquareWave2Pin, HIGH);    //Measure the period_high2 of the input signal using the pulseIn function
+  period_high2 = pulseIn(SquareWave2Pin, HIGH);       //Measure the period_high2 of the input signal using the pulseIn function
 
   monitor.jobEnded(3);                                //Call jobended function of monitor object
 }
 
 //--------------------
 
-float JobTask3b()                    //Declare function JobTask3 [Measure square wave frequency]
+float JobTask3b()                                     //Declare function JobTask3 [Measure square wave frequency]
 {
   monitor.jobStarted(3);                              //Call jobstarted function of monitor object
 
@@ -323,14 +407,14 @@ void JobTask4(void)                                   //Declare function JobTask
   int reading4 = analogRead(PotPin);                  //Declare int and initialise with value of analogRead
   int readingavg = (reading1 + reading2 + reading3 + reading4) / 4;          //Declare int and calculate average of readings
 
-  if (readingavg > (MAX_ANALOG_RANGE/2))                          //If average > half total analog range
+  if (readingavg > (MAX_ANALOG_RANGE/2))               //If average > half total analog range
   {
-  digitalWrite(LEDpin, HIGH);                                     //Light LED
+  digitalWrite(LEDpin, HIGH);                          //Light LED
   }
 
-  else                                                            //Otherwise
+  else                                                 //Otherwise
   {
-  digitalWrite(LEDpin, LOW);                                      //Do not light LED
+  digitalWrite(LEDpin, LOW);                           //Do not light LED
   }
 
   monitor.jobEnded(4);                                //Call jobended function of monitor object
@@ -352,7 +436,7 @@ void JobTask5a(void)                                   //Declare function JobTas
 
 //--------------------
 
-void JobTask5b(void)                                   //Declare function JobTask5 [Map & print frequency vals]
+void JobTask5b(void)                                  //Declare function JobTask5 [Map & print frequency vals]
 {
   monitor.jobStarted(5);                              //Call jobstarted function of monitor object
 
